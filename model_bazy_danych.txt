@@ -1,0 +1,126 @@
+Model danych (SQLAlchemy)
+
+3 TYPY UŻYTKOWNIKÓW
+JOB_SEEKER – osoba szukająca pracy
+dodawanie aplikacji
+zarządzanie firmami
+dodawanie rozmów
+przeglądanie statystyk swoich
+importować ogłoszenia
+zarządzać swoim profilem
+
+ADMIN – zarządza użytkownikami i systemem
+przegląd wszystkich użytkowników
+zmiana ról
+usuwanie użytkowników
+usuwanie ogłoszeń
+przegląd globalnych statystyk
+blokować konta
+
+RECRUITER – osoba dodająca ogłoszenia
+dodawać oferty
+edytować oferty swoje
+usuwać swoje oferty
+przeglądać aplikacje do swoich ogłoszeń
+zmieniać status kandydatów
+
+ENUM:
+JOB_SEEKER = "job_seeker"
+RECRUITER = "recruiter"
+ADMIN = "admin"
+	
+
+Tabela User
+id PK
+username TEXT, UNIQUE
+email TEXT, UNIQUE
+password_hash
+role (ENUM: job_seeker / recruiter / admin)
+created_at
+
+RELACJE:
+1 User może mieć wiele aplikacji
+1 User może mieć wiele firm
+1 User może dodać wiele ogłoszeń - jeśli recruiter
+
+
+JobOffer
+id 
+recruiter_id - Relacja z tabelą User ( 1 User może mieć wiele ogłoszen)
+title
+description
+location
+salary_min
+salary_max
+is_active
+created_at
+
+
+
+
+Company
+id PK
+user_id (FK -> User)
+name
+website
+location
+notes
+created_at
+
+RELACJE:
+1 firma -> wiele aplikacji użytkowników, czyli dużo chętnych
+Każdy użytkownik ma własne firmy (izolacja danych).
+
+Application - Aplikacja użytkownika
+id (PK)
+user_id (FK → User)
+company_id (FK → Company, nullable)
+job_offer_id (FK → JobOffer, nullable)
+position
+status (ENUM)
+applied_date
+response_date
+salary_min
+salary_max
+job_url
+notes
+created_at
+updated_at
+
+Relacje:
+
+N → 1 User
+N → 1 Company
+N → 1 JobOffer
+1 → N Interviews
+
+Uwaga:
+Application może być:
+
+ręczna (np. wklejony link)
+do oferty z systemu
+
+Interview
+
+id
+application_id (FK)
+scheduled_at
+type (ENUM: hr, technical, final)
+notes
+
+Relacja:
+
+N → 1 Application
+
+
+
+
+RELACJE:
+User (1)
+ ├── (N) Applications
+ ├── (N) Companies
+ └── (N) JobOffers (jeśli recruiter)
+
+JobOffer (1) ──── (N) Applications
+Company (1) ───── (N) Applications
+Application (1) ─ (N) Interviews
