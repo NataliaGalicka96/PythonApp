@@ -2,6 +2,7 @@
 # Plik zawiera inizjalizację LoginManager oraz instancję CSRF
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
+from flask_wtf import CSRFProtect
 
 # Tworzę instancję bazy danych ORM
 db = SQLAlchemy()
@@ -14,3 +15,5 @@ login_manager.login_view = "login"
 login_manager.login_message_category = "info"
 login_manager.login_message = "Zaloguj się, aby uzyskać dostęp do tej strony"
 
+# Tworzenie instancji CSRF
+csrf = CSRFProtect()
