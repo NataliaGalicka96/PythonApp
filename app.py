@@ -19,6 +19,12 @@ login_manager.init_app(app)
 csrf.init_app(app)
 migrate.init_app(app, db)
 
+# Metoda ładowania użytkownika
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+
 if __name__ == '__main__':
     
     # W wersji produkcujnej zakomentować - NIE UŻYWAĆ
