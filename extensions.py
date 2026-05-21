@@ -3,9 +3,12 @@
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_wtf import CSRFProtect
+from flask_migrate import Migrate
 
 # Tworzę instancję bazy danych ORM
+# Migracja posłuży nam do aktualizowania/tworzenia tabel w bazie danych
 db = SQLAlchemy()
+migrate = Migrate()
 
 # Tworzę instancję LoginManager, do tworzenia stron logowania
 # Dzięki temu managerowi, nie będę msuiała sama definiować metod np. autoryzacja, zalogowanie użytkownika, czy jest zalogowany itd..
