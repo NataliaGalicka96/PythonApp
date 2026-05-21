@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- Tytuł strony, który można nadpisać w szablonach -->
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'styles.css') }}" />
+    <!-- Link do wspólnego arkusza stylów CSS-->
+    <meta name="csrf-token" content="{{ csrf_token()}}" />
+    <!-- Meta tag z tokenem CSRF-->
+</head>
+
+<body>
+    <!-- Tutaj można dodać wspólną nawigację - nav -->
+    <nav>
+        <div class="nav-left">
+            <a href="{{url_for('index')}}">Strona główna</a>
+        </div>
+        <div class="nav-right">
+            {% if current_user.is_authenticated %}
+            <<a href=" {{url_for('logout') }}">Wyloguj się</a>
+
+                {% else %}
+                <a href="{{ url_for('login') }}">Zaloguj się</a>
+                <!-- Link do logowania -->
+                <a href="{{ url_for('register') }}">Zarejestruj się</a>
+                <!-- Link do rejestracji -->
+                {% endif %}
+        </div>
+    </nav>
+    <!-- Wiadomości messages -->
+    <div class="container">
+        <!-- Blok do wyświetlania komunikatów flash-->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% ifmessages %}
+        {% for category, message in messages %}
+        <div class="flash {{ category }}">
+            {{ message }}
+            <!-- Wyświetlamy komunikat flash -->
+        </div>
+        {% endfor %} {% endif %} {% endwith %} {% block content %}{% endblock %}
+        <!-- Miejsce na unikalną zawartość każdej podstrony -->
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <!-- Link do skryptu JavaScript -->
+
+</body>
+
+</html>
