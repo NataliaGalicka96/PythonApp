@@ -1,8 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, redirect, url_for, flash
 from extensions import db, login_manager, csrf, migrate
 import os # Obsługa plików
 from models import User
 from flask_login import login_user, login_required, logout_user, current_user
+from forms import RegistrationForm
+
+# Do bezpiecznego haszowania haseł:
+# generate_password_hash() – tworzy hash hasła
+# check_password_hash() – sprawdza czy hasło pasuje do hasha
+from werkzeug.security import generate_password_hash, check_password_hash
+import logging
+
 
 
 
@@ -29,6 +37,38 @@ def load_user(user_id):
 @app.route("/")
 def index():
     return render_template("index.html")
+
+# Rejestracja
+@app.route("/register", methods = ['GET', 'POST'])
+def register():
+    #Sprawdzenie, czy użytkownik jest już zalogowany - jeśli tak, to przekierowujemy na główną stronę
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
+    
+    #Użytkownik nie jest zalogowany, to tworzymy formularz rejestracji
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        # Dodanie użytkownika do bazy
+        hashed_password = generate_password_hash(form.password.data) # dane wprowadzone w formularzu form.password.data'
+        new_user = User(username = form.username.data, password = hashed_password)
+
+        # Próbujemy dodać użytkownika do bazy danych
+        try:
+            db.session.add(new_user)
+            db.session.commit()
+
+            # Wyświetlenie komunikatu
+            flash("Twoje konto zostało utworzone! Możesz się zalogować", "success")
+
+            # Przekierowanie na stronę logowania
+            return redirect(url_for("login"))
+        except Exception as e:
+            db.session.rollback()
+            app.logger.error(f"Błąd przy rejestracji użytkownika: {e}")
+            flash("Wystąpił błąd podczas rejestracji użytkownika. Spróbuj ponownie.", "danger")
+
+    # gdy dane w formularzu niepoprawne - wyświetlamy ponownie formularz
+    return render_template("register.html", form=form)
 
 
 
