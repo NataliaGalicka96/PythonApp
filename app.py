@@ -1,6 +1,7 @@
 from flask import Flask
 from extensions import db, login_manager, csrf, migrate
 import os # Obsługa plików
+from models import User
 
 
 
