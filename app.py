@@ -1,7 +1,8 @@
-from flask import Flask
+from flask import Flask, render_template
 from extensions import db, login_manager, csrf, migrate
 import os # Obsługa plików
 from models import User
+from flask_login import login_user, login_required, logout_user, current_user
 
 
 
@@ -24,8 +25,13 @@ migrate.init_app(app, db)
 def load_user(user_id):
     return User.query.get(int(user_id))
 
+# Strona główna - dostępna dla niezalogowanych -> tylko przeglądanie ogłoszeń
+@app.route("/")
+def index():
+    return render_template("index.html")
+
 
 if __name__ == '__main__':
     
-    # W wersji produkcujnej zakomentować - NIE UŻYWAĆ
+    # W wersji produkcyjnej zakomentować - NIE UŻYWAĆ
     app.run(debug=True)
