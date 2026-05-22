@@ -1,0 +1,285 @@
+/* ===== BASE ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: #f8fafc;
+    color: #111827;
+}
+
+/* ===== MAIN LAYOUT ===== */
+
+.auth-layout {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 540px;
+}
+
+/* ===== LEFT SIDE ===== */
+
+.auth-side {
+    background:
+        linear-gradient(135deg,
+            #1e3a8a,
+            #2563eb,
+            #60a5fa);
+
+    position: relative;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 80px;
+
+    color: white;
+}
+
+.brand-box {
+    max-width: 500px;
+}
+
+.brand-logo img {
+    width: 72px;
+    margin-bottom: 30px;
+}
+
+.brand-box h1 {
+    font-size: 4rem;
+    line-height: 1.05;
+    margin-bottom: 25px;
+    font-weight: 800;
+}
+
+.brand-box p {
+    font-size: 1.2rem;
+    line-height: 1.7;
+    opacity: 0.9;
+    margin-bottom: 40px;
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    font-size: 1rem;
+    opacity: 0.95;
+}
+
+/* ===== RIGHT SIDE ===== */
+
+.auth-panel {
+    background: white;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px;
+}
+
+.auth-container {
+    width: 100%;
+    max-width: 420px;
+}
+
+/* ===== MOBILE LOGO ===== */
+
+.mobile-logo {
+    display: none;
+}
+
+/* ===== FORM ===== */
+
+.auth-container h2 {
+    font-size: 2rem;
+    margin-bottom: 35px;
+    font-weight: 700;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.form-name {
+    display: flex;
+    gap: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+label {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #374151;
+}
+
+/* ===== INPUTS ===== */
+
+.form-control {
+    padding: 14px 16px;
+
+    border: 1px solid #d1d5db;
+    border-radius: 14px;
+
+    background: #f9fafb;
+
+
+
+    transition: 0.2s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #2563eb;
+    background: white;
+
+    box-shadow:
+        0 0 0 5px rgba(37, 99, 235, 0.12);
+}
+
+/* ===== BUTTON ===== */
+
+.btn {
+    margin-top: 10px;
+
+    padding: 15px;
+
+    border: none;
+    border-radius: 14px;
+
+    background: linear-gradient(135deg,
+            #2563eb,
+            #3b82f6);
+
+    color: white;
+
+    font-size: 1rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+/* ===== FOOTER ===== */
+
+.bottom-text {
+    margin-top: 28px;
+
+    text-align: center;
+
+    color: #6b7280;
+}
+
+.bottom-text a {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* ===== BACKGROUND SHAPES ===== */
+
+.auth-side::before,
+.auth-side::after {
+    content: "";
+
+    position: absolute;
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.08);
+
+    filter: blur(10px);
+
+    z-index: 0;
+}
+
+/* Large top shape */
+.auth-side::before {
+    width: 420px;
+    height: 420px;
+
+    top: -120px;
+    right: -120px;
+}
+
+/* Bottom shape */
+.auth-side::after {
+    width: 300px;
+    height: 300px;
+
+    bottom: -100px;
+    left: -80px;
+}
+
+.brand-box {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 950px) {
+
+    .auth-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .auth-side {
+        display: none;
+    }
+
+    .auth-panel {
+        min-height: 100vh;
+    }
+
+    .mobile-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+
+        margin-bottom: 30px;
+
+        font-size: 1.5rem;
+        font-weight: 700;
+    }
+
+    .mobile-logo img {
+        width: 42px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .form-name {
+        flex-direction: column;
+    }
+
+    .auth-panel {
+        padding: 25px;
+    }
+
+    .brand-box h1 {
+        font-size: 3rem;
+    }
+}

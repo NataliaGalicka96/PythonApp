@@ -13,6 +13,6 @@ class RegistrationForm(FlaskForm):
         
     # Walicja email -> czy email jest unikalny
     def validate_email(self, email):
-        existing_email = User.query.filer_by(email = email.data).first() #email.data = dane wprowadzone w formularzu
+        existing_email = User.query.filter_by(email = email.data).first() #email.data = dane wprowadzone w formularzu
         if existing_email:
             raise ValidationError("Istnieje konto przypisane do tego adresu e-mail")
