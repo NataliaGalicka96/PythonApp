@@ -70,6 +70,18 @@ def register():
     # gdy dane w formularzu niepoprawne - wyświetlamy ponownie formularz
     return render_template("register.html", form=form)
 
+# Logowanie
+@app.route("/login", methods = ['POST', 'GET'])
+def login():
+    # Sprawdzenie, czy użytkownik jest już zalogowwany
+    if current_user.is_authenticated:
+        return redirect(url_for("index"))
+
+
+    # Jeśli brak danych w formularzu, ponowne wyrenderowanie
+    return render_template("login.html")
+
+
 
 
 if __name__ == '__main__':

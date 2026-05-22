@@ -34,7 +34,7 @@
     <div class="container">
         <!-- Blok do wyświetlania komunikatów flash-->
         {% with messages = get_flashed_messages(with_categories=true) %}
-        {% ifmessages %}
+        {% if messages %}
         {% for category, message in messages %}
         <div class="flash {{ category }}">
             {{ message }}

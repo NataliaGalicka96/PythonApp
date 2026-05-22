@@ -40,7 +40,6 @@ created_at
 
 RELACJE:
 1 User może mieć wiele aplikacji
-1 User może mieć wiele firm
 1 User może dodać wiele ogłoszeń - jeśli recruiter
 
 
@@ -69,7 +68,7 @@ created_at
 
 RELACJE:
 1 firma -> wiele aplikacji użytkowników, czyli dużo chętnych
-Każdy użytkownik ma własne firmy (izolacja danych).
+1 firma -> wiele ogłoszeń
 
 Application - Aplikacja użytkownika
 id (PK)
@@ -94,11 +93,6 @@ N → 1 Company
 N → 1 JobOffer
 1 → N Interviews
 
-Uwaga:
-Application może być:
-
-ręczna (np. wklejony link)
-do oferty z systemu
 
 Interview
 
@@ -113,14 +107,16 @@ Relacja:
 N → 1 Application
 
 
-
-
-RELACJE:
 User (1)
  ├── (N) Applications
- ├── (N) Companies
- └── (N) JobOffers (jeśli recruiter)
+ └── (N) JobOffers
 
-JobOffer (1) ──── (N) Applications
-Company (1) ───── (N) Applications
-Application (1) ─ (N) Interviews
+Company (1)
+ ├── (N) JobOffers
+ └── (N) Applications
+
+JobOffer (1)
+ └── (N) Applications
+
+Application (1)
+ └── (N) Interviews
