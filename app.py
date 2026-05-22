@@ -50,7 +50,7 @@ def register():
     if form.validate_on_submit():
         # Dodanie użytkownika do bazy
         hashed_password = generate_password_hash(form.password.data) # dane wprowadzone w formularzu form.password.data'
-        new_user = User(username = form.username.data, password = hashed_password)
+        new_user = User(first_name = form.first_name.data, last_name = form.last_name.data, email = form.email.data,  password = hashed_password)
 
         # Próbujemy dodać użytkownika do bazy danych
         try:
@@ -80,9 +80,6 @@ def login():
 
     # Jeśli brak danych w formularzu, ponowne wyrenderowanie
     return render_template("login.html")
-
-
-
 
 if __name__ == '__main__':
     
