@@ -219,6 +219,14 @@ label {
     z-index: 2;
 }
 
+.flash.success {
+    background: rgb(37 176 26 / 22%);
+    text-align: center;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 14px;
+}
+
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 950px) {

@@ -16,3 +16,8 @@ class RegistrationForm(FlaskForm):
         existing_email = User.query.filter_by(email = email.data).first() #email.data = dane wprowadzone w formularzu
         if existing_email:
             raise ValidationError("Istnieje konto przypisane do tego adresu e-mail")
+
+class LoginForm(FlaskForm):
+    email = StringField("Email", validators=[DataRequired()])
+    password = PasswordField("Hasło", validators=[DataRequired()])
+    submit = SubmitField("Zaloguj się")
