@@ -225,12 +225,31 @@ label {
 }
 
 .flash.success {
+    background-color: #dff0d8;
     background: rgb(37 176 26 / 22%);
     text-align: center;
     padding: 10px;
-    margin: 20px;
     border-radius: 14px;
 }
+
+.flash.info {
+    background-color: #d9edf7;
+    color: #31708f;
+    text-align: center;
+    padding: 10px;
+    border-radius: 14px;
+}
+
+.flash.danger {
+    background-color: #f2dede;
+    color: #a94442;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px;
+
+}
+
+
 
 /* ===== RESPONSIVE ===== */
 

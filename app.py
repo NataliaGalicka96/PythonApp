@@ -94,6 +94,15 @@ def login():
     # Jeśli brak danych w formularzu, ponowne wyrenderowanie
     return render_template("login.html", form=form)
 
+# Wylogowanie
+@login_required
+@app.route("/logout")
+def logout():
+    logout_user()
+    flash("Zostałeś wylogowany", "info")
+    return redirect(url_for("login"))
+
+
 if __name__ == '__main__':
     
     # W wersji produkcyjnej zakomentować - NIE UŻYWAĆ
