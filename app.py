@@ -3,7 +3,7 @@ from extensions import db, login_manager, csrf, migrate
 import os # Obsługa plików
 from models import User
 from flask_login import login_user, login_required, logout_user, current_user
-from forms import RegistrationForm
+from forms import RegistrationForm, LoginForm
 
 # Do bezpiecznego haszowania haseł:
 # generate_password_hash() – tworzy hash hasła
@@ -76,10 +76,23 @@ def login():
     # Sprawdzenie, czy użytkownik jest już zalogowwany
     if current_user.is_authenticated:
         return redirect(url_for("index"))
-
+    
+    # Użytkownik nie jest zalogowany, to dodamy formularz logowania
+    form = LoginForm()
+    if form.validate_on_submit():
+        # Pobieram użytkownika o podanym emailu
+        user = User.query.filter_by(email = form.email.data).first()
+        if user and check_password_hash(user.password, form.password.data):
+            # Jeśli istnieje użytkownik o takim emailu w bazie i hasło się zgadza
+            # Logujemy użytkownika
+            login_user(user)
+            flash("Zostałeś zalogowany", "success")
+            return redirect(url_for("index"))
+        else:
+            flash("Niepoprawne dane logowania", "danger")
 
     # Jeśli brak danych w formularzu, ponowne wyrenderowanie
-    return render_template("login.html")
+    return render_template("login.html", form=form)
 
 if __name__ == '__main__':
     
