@@ -166,7 +166,6 @@ label {
 
 .btn:hover {
     transform: translateY(-2px);
-
     box-shadow:
         0 10px 25px rgba(37, 99, 235, 0.25);
 }
@@ -224,6 +223,7 @@ label {
     z-index: 2;
 }
 
+/* ===== FLASH MESSAGES ===== */
 .flash.success {
     background-color: #dff0d8;
     background: rgb(37 176 26 / 22%);
@@ -249,6 +249,82 @@ label {
 
 }
 
+/* ===== NAV ===== */
+
+
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background:
+        linear-gradient(135deg,
+            #1e3a8a,
+            #2563eb,
+            #60a5fa);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px;
+    border-right: 1px solid #1e3a8a;
+}
+
+.logo h1 {
+    font-size: 30px;
+    margin-bottom: 8px;
+}
+
+.logo p {
+    color: #a1a1aa;
+    font-size: 14px;
+    margin-bottom: 40px;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.menu a,
+.logout {
+    text-decoration: none;
+    color: white;
+    padding: 14px 16px;
+    border-radius: 16px;
+    transition: 0.2s ease;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.menu a:hover,
+.logout:hover {
+
+    transform: translateX(4px);
+    box-shadow:
+        0 10px 25px rgba(37, 99, 235, 0.25);
+}
+
+/* ===== MAIN PAGE ===== */
+.form-main {
+    display: flex;
+}
+
+.dashboard {
+    padding: 20px;
+    width: 100%;
+    height: 100vh;
+
+}
+
+.dashboard-main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard-main-left {
+    display: flex;
+    gap: 10px;
+}
 
 
 /* ===== RESPONSIVE ===== */

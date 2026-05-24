@@ -13,18 +13,7 @@
 </head>
 
 <body>
-    <!-- Tutaj można dodać wspólną nawigację - nav -->
-    <nav class="navbar">
-        {% if current_user.is_authenticated %}
-        <a href="{{ url_for('logout') }}" class="nav-link logout">Wyloguj się</a>
-        {% else %}
-        <!--
-            <a href="{{ url_for('login') }}" class="nav-link">Zaloguj się</a>
-            <a href="{{ url_for('register') }}" class="nav-link register">Zarejestruj się</a>
-            -->
-        {% endif %}
-        </div>
-    </nav>
+
     <!-- Wiadomości messages -->
     <div class="container">
         <!-- Blok do wyświetlania komunikatów flash-->
@@ -35,8 +24,43 @@
             {{ message }}
             <!-- Wyświetlamy komunikat flash -->
         </div>
-        {% endfor %} {% endif %} {% endwith %} {% block content %}{% endblock %}
+        {% endfor %} {% endif %} {% endwith %}
         <!-- Miejsce na unikalną zawartość każdej podstrony -->
+    </div>
+
+    <!-- Tutaj można dodać wspólną nawigację - nav -->
+    {% if current_user.is_authenticated %}
+    <div class="form-main">
+        <aside class="sidebar">
+            <div>
+                <div class="logo">
+                    <h1>JobTracker</h1>
+                    <p>Zarządzaj swoimi aplikacjami</p>
+                </div>
+
+                <nav class="menu">
+                    <a href="/">Strona główna</a>
+                    <a href="#">Aplikacje</a>
+                    <a href="#">Firmy</a>
+                    <a href="#">Kalendarz</a>
+                    <a href="#">Notatki</a>
+                    <a href="#">Statystyki</a>
+                    <a href="#">Profil</a>
+                    <a href="#">Ustawienia</a>
+                </nav>
+            </div>
+
+            <a href="/logout" class="logout">Wyloguj się</a>
+        </aside>
+        {% block content %}{% endblock %}
+
+    </div>
+    {% else %}
+    <!--
+            <a href="{{ url_for('login') }}" class="nav-link">Zaloguj się</a>
+            <a href="{{ url_for('register') }}" class="nav-link register">Zarejestruj się</a>
+            -->
+    {% endif %}
     </div>
 
     <script src="{{ url_for('static', filename='script.js') }}"></script>

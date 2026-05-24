@@ -1,2 +1,27 @@
 {% extends "base.html" %}
-{% block title %}Rejestracja{% endblock %}
+{% block title %}Strona główna{% endblock %}
+{% block content %}
+<div class="dashboard">
+    <div class="dashboard-main">
+        <div class="dashboard-main-left">
+            <h1>Dashboard</h1>
+            <h2>Przegląd Twoich aplikacji</h2>
+        </div>
+        <div class="dashboard-main-right">Profil</div>
+    </div>
+
+    <div class="summary">
+        <div>Wszystkie aplikacje</div>
+        <div>Aplikacje w tym miesiącu</div>
+        <div>Rozmowy</div>
+        <div>Oferty</div>
+        <div>Wskaźnik odpowiedzi</div>
+    </div>
+    <div>
+        <div>Aplikacje wg statusu</div>
+        <div>Aplikacje w czasie</div>
+        <div>Nadchodzące rozmowy</div>
+    </div>
+</div>
+
+{% endblock %}
