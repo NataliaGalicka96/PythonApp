@@ -31,19 +31,29 @@ migrate.init_app(app, db)
 # Metoda ładowania użytkownika
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return db.session.get(User, int(user_id))
 
 # Strona główna - dostępna dla niezalogowanych -> tylko przeglądanie ogłoszeń
 @app.route("/")
 def index():
-    return render_template("index.html")
+    #Sprawdzenie, czy użytkownik jest już zalogowany - jeśli tak, to przekierowujemy na główną stronę
+    if current_user.is_authenticated:
+        return redirect(url_for("dashboard"))
+    return render_template("guest/home.html")
+
+# Strona główna - dostępna po zalogowaniu
+@app.route("/dashboard", methods = ['GET'])
+@login_required
+def dashboard():
+    print(current_user)
+    return render_template("dashboard/index.html")
 
 # Rejestracja
 @app.route("/register", methods = ['GET', 'POST'])
 def register():
     #Sprawdzenie, czy użytkownik jest już zalogowany - jeśli tak, to przekierowujemy na główną stronę
     if current_user.is_authenticated:
-        return redirect(url_for("index"))
+        return redirect(url_for("dashboard"))
     
     #Użytkownik nie jest zalogowany, to tworzymy formularz rejestracji
     form = RegistrationForm()
@@ -68,14 +78,14 @@ def register():
             flash("Wystąpił błąd podczas rejestracji użytkownika. Spróbuj ponownie.", "danger")
 
     # gdy dane w formularzu niepoprawne - wyświetlamy ponownie formularz
-    return render_template("register.html", form=form)
+    return render_template("auth/register.html", form=form)
 
 # Logowanie
 @app.route("/login", methods = ['POST', 'GET'])
 def login():
     # Sprawdzenie, czy użytkownik jest już zalogowwany
     if current_user.is_authenticated:
-        return redirect(url_for("index"))
+        return redirect(url_for("dashboard"))
     
     # Użytkownik nie jest zalogowany, to dodamy formularz logowania
     form = LoginForm()
@@ -87,12 +97,12 @@ def login():
             # Logujemy użytkownika
             login_user(user)
             flash("Zostałeś zalogowany", "success")
-            return redirect(url_for("index"))
+            return redirect(url_for("dashboard"))
         else:
             flash("Niepoprawne dane logowania", "danger")
 
     # Jeśli brak danych w formularzu, ponowne wyrenderowanie
-    return render_template("login.html", form=form)
+    return render_template("auth/login.html", form=form)
 
 # Wylogowanie
 @login_required

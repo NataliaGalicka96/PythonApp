@@ -1,0 +1,23 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %}JobTracker{% endblock %}
+
+{% block body %}
+<!--
+{% include 'partials/navbar_guest.html' %}
+-->
+
+<section class="hero">
+
+    <h1>Track your job applications</h1>
+
+    <p>
+        Organizuj aplikacje, rozmowy i oferty pracy
+        w jednym miejscu.
+    </p>
+    <a href="{{url_for('register')}}" class="btn">
+        Zacznij teraz
+    </a>
+</section>
+
+{% endblock %}
