@@ -35,7 +35,7 @@ id PK
 username TEXT, UNIQUE
 email TEXT, UNIQUE
 password_hash
-role (ENUM: job_seeker / recruiter / admin)
+role (ENUM: job_seeker / recruiter / admin) - domyślna job_seeker
 created_at
 
 RELACJE:
@@ -48,11 +48,17 @@ id
 recruiter_id - Relacja z tabelą User ( 1 User może mieć wiele ogłoszen)
 title
 description
+responsibilities
+requirements
 location
 salary_min
 salary_max
+type_of_contract (B2B, ZLECENIE, UMOWA O PRACĘ)
+level (JUNIOR, MID, SENIOR)
+job_type (ZDALNA/HYBRYDOWA/STACJONARNA)
 is_active
 created_at
+expired_at
 
 
 
