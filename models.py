@@ -32,5 +32,4 @@ class JobOffer(db.Model):
     job_type = db.Column(db.Enum(JobType), nullable = False)
     is_active = db.Column(db.Boolean, nullable = False, default = True)
     created = db.Column(db.DateTime, default = datetime.now(UTC)) # UTC - uniwersalny światowy czas
-    expired = db.Column(db.DateTime, nullable = False, default = datetime.now(UTC) + timedelta(days=30))
-    
+    expired = db.Column(db.DateTime, nullable = False,  default=lambda: datetime.now(UTC) + timedelta(days=30))
