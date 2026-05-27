@@ -1,9 +1,9 @@
-from flask import Flask, render_template, redirect, url_for, flash
+from flask import Flask, render_template, redirect, url_for, flash, jsonify, request
 from extensions import db, login_manager, csrf, migrate
 import os # Obsługa plików
-from models import User
+from models import User, JobOffer
 from flask_login import login_user, login_required, logout_user, current_user
-from forms import RegistrationForm, LoginForm
+from forms import RegistrationForm, LoginForm, JobSearchForm
 
 # Do bezpiecznego haszowania haseł:
 # generate_password_hash() – tworzy hash hasła
@@ -111,6 +111,62 @@ def logout():
     logout_user()
     flash("Zostałeś wylogowany", "info")
     return redirect(url_for("login"))
+
+@app.route("/job_offers", methods = ['GET'])
+def get_job_offers():
+    # Pobranie wszystkich ogłoszeń - ogłoszenia widzą wszyscy i zalogowani i niezalogowani
+    offers = JobOffer.query.filter_by(is_active=True)\
+    .order_by(JobOffer.created.desc())\
+    .all() # Wszystkie ogłoszenia w kolejności od najnowszego - tylko aktywne
+
+    return render_template("offers.html", offers = offers)
+
+@app.route("/jobs")
+def jobs():
+
+    form = JobSearchForm(request.args)
+
+    jobs_query = JobOffer.query
+
+    # SEARCH QUERY
+
+    if form.query.data:
+
+        search = f"%{form.query.data}%"
+
+        jobs_query = jobs_query.filter(
+
+            db.or_(
+
+                JobOffer.title.ilike(search),
+
+                #JobOffer.company.ilike(search),
+
+                #JobOffer.technologies.ilike(search)
+
+            )
+
+        )
+
+    # LOCATION
+
+    if form.location.data:
+
+        location = f"%{form.location.data}%"
+
+        jobs_query = jobs_query.filter(
+            JobOffer.location.ilike(location)
+        )
+
+    offers = jobs_query.order_by(
+        JobOffer.created.desc()
+    ).all()
+
+    return render_template(
+        "offers.html",
+        offers=offers,
+        form=form
+    )
 
 
 if __name__ == '__main__':

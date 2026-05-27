@@ -1,0 +1,67 @@
+{% extends 'layouts/dashboard_base.html' %}
+{% block title %}Oferty pracy{% endblock %}
+{% block dashboard_content %}
+<div class="wrapper">
+    <div class="jobs-header">
+        <div>
+            <h1>Oferty pracy</h1>
+            <p>
+                Wyszukuj oferty pracy i zarządzaj aplikacjami
+            </p>
+        </div>
+        <!--
+            <a href="#" class="btn">
+            + Dodaj ofertę
+        </a>
+        -->
+    </div>
+    <!-- SEARCH -->
+    <div class="search-section">
+        <form method="GET" class="search-form">
+            <div class="search-field">
+                {{ form.query(class="search-control") }}
+            </div>
+            <div class="search-field location-field">
+                {{ form.location(class="search-control") }}
+            </div>
+            {{ form.submit(class="btn search-btn") }}
+        </form>
+
+    </div>
+
+    <div class="offers-grid">
+        {% for offer in offers %}
+
+        <div class="offer-card">
+
+            <div class="offer-top">
+
+                <h3>{{ offer.title }}</h3>
+
+                <span>
+                    {{ offer.company }}
+                </span>
+
+            </div>
+
+            <div class="offer-meta">
+
+                <p>{{ offer.location }}</p>
+
+                <p>
+                    {{ offer.salary_min }}
+                    -
+                    {{ offer.salary_max }}
+                </p>
+                <p>{{ offer.type_of_contract.value }}</p>
+
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+</div>
+
+
+{% endblock %}

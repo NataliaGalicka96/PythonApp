@@ -45,12 +45,11 @@ RELACJE:
 
 JobOffer
 id 
-recruiter_id - Relacja z tabelą User ( 1 User może mieć wiele ogłoszen)
 title
 description
 responsibilities
 requirements
-location
+location - na razie String, docelowo id => przygotować bazę miast
 salary_min
 salary_max
 type_of_contract (B2B, ZLECENIE, UMOWA O PRACĘ)
@@ -59,6 +58,10 @@ job_type (ZDALNA/HYBRYDOWA/STACJONARNA)
 is_active
 created_at
 expired_at
+
+Do dodania później:
+recruiter_id - Relacja z tabelą User ( 1 User może mieć wiele ogłoszen)
+
 
 
 

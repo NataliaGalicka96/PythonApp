@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField
-from wtforms.validators import DataRequired, Length, EqualTo, ValidationError, Email
+from wtforms.validators import DataRequired, Length, EqualTo, ValidationError, Email, Optional
 from models import User
 
 class RegistrationForm(FlaskForm):
@@ -21,3 +21,26 @@ class LoginForm(FlaskForm):
     email = StringField("Email", validators=[DataRequired()])
     password = PasswordField("Hasło", validators=[DataRequired()])
     submit = SubmitField("Zaloguj się")
+
+
+class JobSearchForm(FlaskForm):
+    query = StringField(
+        "Stanowisko lub technologia",
+        validators=[Optional()],
+        render_kw={
+            "placeholder":
+            "Python, Backend, Flask, Google..."
+        }
+    )
+
+    location = StringField(
+        "Lokalizacja",
+        validators=[Optional()],
+        render_kw={
+            "placeholder":
+            "Warszawa, Remote..."
+        }
+    )
+
+    submit = SubmitField("Szukaj")
+
