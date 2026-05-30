@@ -1,0 +1,39 @@
+<!--
+<div class="form-main">
+    <aside class="sidebar">
+        <div>
+            <div class="logo">
+                <h1>JobTracker</h1>
+                <p>Zarządzaj swoimi aplikacjami</p>
+            </div>
+            <nav class="menu">
+                <a href="#">Strona główna</a>
+                <a href="#">Oferty</a>
+                <a href="#">Moje aplikacje</a>
+                <a href="#">Rozmowy</a>
+                <a href="#">Kalendarz</a>
+                <a href="#">Notatki</a>
+                <a href="#">Statystyki</a>
+                <a href="#">Ustawienia</a>
+            </nav>
+        </div> <a href="auth/logout" class="logout">Wyloguj się</a>
+    </aside>
+</div>
+-->
+
+<aside class="sidebar">
+    <div>
+        <h2>JobTracker</h2>
+        <nav>
+            <a href="{{ url_for('dashboard.dashboard') }}">Strona główna</a>
+            <a href="{{ url_for('jobs.jobs') }}">Oferty</a>
+            <a href="{{ url_for('dashboard.applications') }}">Moje aplikacje</a>
+            <a href="#">Rozmowy</a>
+            <a href="#">Kalendarz</a>
+            <a href="#">Notatki</a>
+            <a href="#">Statystyki</a>
+            <a href="#">Ustawienia</a>
+        </nav>
+    </div>
+    <a href="{{ url_for('auth.logout') }}">Wyloguj</a>
+</aside>

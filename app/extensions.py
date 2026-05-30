@@ -14,7 +14,7 @@ migrate = Migrate()
 # Dzięki temu managerowi, nie będę msuiała sama definiować metod np. autoryzacja, zalogowanie użytkownika, czy jest zalogowany itd..
 # Ustawiam widok logowania, kategorię komunikatów, ustawienie komunikatu
 login_manager = LoginManager()
-login_manager.login_view = "login"
+login_manager.login_view = "auth.login"
 login_manager.login_message_category = "info"
 login_manager.login_message = "Zaloguj się, aby uzyskać dostęp do tej strony"
 

@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+
+{% block body %}
+
+{% include 'partials/guest_navbar.html' %}
+
+<div class="auth-wrapper">
+
+    {% block auth_content %}
+    {% endblock %}
+
+</div>
+
+{% endblock %}

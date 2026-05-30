@@ -1,0 +1,63 @@
+<div class="offer-card">
+    <div class="offer-top">
+        <h3>{{ offer.title }}</h3>
+        <span>
+            {{ offer.company }}
+        </span>
+    </div>
+
+    <div class="offer-meta">
+
+        <p>{{ offer.location }}</p>
+
+        {% if offer.salary_min %}
+
+        <p>
+            {{ offer.salary_min }}
+            -
+            {{ offer.salary_max }}
+            PLN
+        </p>
+
+        {% else %}
+
+        <p>Wynagrodzenie nie podane</p>
+
+        {% endif %}
+
+        <p>
+            {{ offer.type_of_contract.value }}
+        </p>
+
+    </div>
+
+    <div class="offer-actions">
+
+        <a href="{{ url_for(
+            'jobs.job_details',
+            job_id=offer.id
+        ) }}" class="btn-small">
+
+            Szczegóły
+
+        </a>
+
+        {% if current_user.is_authenticated %}
+
+        <button class="btn-save">
+            Zapisz
+        </button>
+
+        {% else %}
+
+        <a href="{{ url_for('auth.login') }}" class="btn-save">
+
+            Zaloguj się
+
+        </a>
+
+        {% endif %}
+
+    </div>
+
+</div>

@@ -1,5 +1,5 @@
 from flask import Flask, render_template, redirect, url_for, flash, jsonify, request
-from extensions import db, login_manager, csrf, migrate
+from PythonApp.app.extensions import db, login_manager, csrf, migrate
 import os # Obsługa plików
 from models import User, JobOffer
 from flask_login import login_user, login_required, logout_user, current_user

@@ -1,0 +1,46 @@
+{% extends 'layouts/guest_base.html' %}
+{% block title %}Oferty pracy{% endblock %}
+{% block dashboard_content %}
+<div class="wrapper">
+    <div class="jobs-header">
+        <div>
+            <h1>Oferty pracy</h1>
+            <p>
+                Wyszukuj oferty pracy i zarządzaj aplikacjami
+            </p>
+        </div>
+        <!--
+            <a href="#" class="btn">
+            + Dodaj ofertę
+        </a>
+        -->
+    </div>
+    <!-- SEARCH -->
+    <div class="search-section">
+        <form method="GET" class="search-form">
+            <div class="search-field">
+                {{ form.query(class="search-control") }}
+            </div>
+            <div class="search-field location-field">
+                {{ form.location(class="search-control") }}
+            </div>
+            {{ form.submit(class="btn search-btn") }}
+        </form>
+
+    </div>
+
+    <div class="offers-grid">
+
+        {% for offer in offers %}
+
+        {% include 'jobs/partials/offer_card.html' %}
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+
+{% endblock %}

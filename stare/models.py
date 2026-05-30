@@ -1,5 +1,5 @@
 # Modele klas - odzwierciedlenie tabel w bazie danych
-from extensions import db
+from PythonApp.app.extensions import db
 from flask_login import UserMixin
 from datetime import datetime, timedelta, UTC
 from enums import UserRole, JobOfferType, JobType, Level

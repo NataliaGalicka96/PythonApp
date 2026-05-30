@@ -1,0 +1,16 @@
+{% extends 'layouts/base.html' %}
+{% block body %}
+<div class="app-layout">
+    {% include 'partials/sidebar.html' %}
+
+    <main class="dashboard-main">
+
+        {% block dashboard_content %}
+        {% endblock %}
+
+    </main>
+
+</div>
+
+
+{% endblock %}

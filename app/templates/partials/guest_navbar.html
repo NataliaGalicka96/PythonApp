@@ -1,0 +1,41 @@
+<nav class="guest-navbar">
+
+    <div class="navbar-left">
+
+        <a href="{{ url_for('jobs.home') }}">
+            JobTracker
+        </a>
+
+    </div>
+
+    <div class="navbar-right">
+
+        <a href="{{ url_for('jobs.jobs') }}">
+            Oferty
+        </a>
+
+        {% if current_user.is_authenticated %}
+
+        <a href="{{ url_for('dashboard.dashboard') }}">
+            Dashboard
+        </a>
+
+        <a href="{{ url_for('auth.logout') }}">
+            Wyloguj
+        </a>
+
+        {% else %}
+
+        <a href="{{ url_for('auth.login') }}">
+            Zaloguj się
+        </a>
+
+        <a href="{{ url_for('auth.register') }}" class="btn-primary">
+            Zarejestruj się
+        </a>
+
+        {% endif %}
+
+    </div>
+
+</nav>

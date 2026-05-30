@@ -1,0 +1,14 @@
+{% extends 'layouts/base.html' %}
+
+{% block body %}
+
+{% include 'partials/guest_navbar.html' %}
+
+<main class="guest-page">
+
+    {% block guest_content %}
+    {% endblock %}
+
+</main>
+
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends 'layouts/auth_base.html' %}
+{% block title %}Logowanie{% endblock %}
+{% block auth_content %}
+
+<div class="auth-layout">
+    <!-- LEFT SIDE -->
+    <div class="auth-side">
+        <div class="brand-box">
+            <h1>Wszystkie aplikacje w jednym miejscu</h1>
+            <p>
+                Organizuj aplikacje, monitoruj status rekrutacji
+                i zdobywaj pracę szybciej.
+            </p>
+            <div class="feature-list">
+                <div>✓ Śledzenie aplikacji</div>
+                <div>✓ Statusy rekrutacji</div>
+                <div>✓ Historia kontaktu</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="auth-panel">
+        <div class="auth-container">
+            <div class="mobile-logo">
+                <img src="{{ url_for('static', filename='images/jobtracker-icon.png') }}">
+                <span>JobTracker</span>
+            </div>
+            <h2>Witaj z powrotem!
+                <p>Zaloguj się do twojego konta</p>
+            </h2>
+
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    {{ form.email.label }}
+                    {{ form.email(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.password.label }}
+                    {{ form.password(class="form-control") }}
+                </div>
+                <!--
+                <div class = "form-forgot">
+                    <checkbox>Zapamiętaj mnie</checkbox>
+                    <span>Nie pamiętasz hasła?</span>
+                </div>
+                -->
+                {{ form.submit(class="btn") }}
+            </form>
+            <div class="bottom-text">
+                Nie masz konta?
+                <a href="{{url_for('auth.register')}}">Zarejestruj się</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

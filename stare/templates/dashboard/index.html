@@ -1,0 +1,39 @@
+{% extends 'layouts/dashboard_base.html' %}
+{% block title %}Dashboard{% endblock %}
+
+{% block dashboard_content %}
+
+<div class="dashboard">
+    <div class="dashboard-main">
+        <div class="dashboard-main-left">
+            <h1>Witaj, {{ current_user.first_name }} !</h1>
+            <p>Oto podsumowanie Twoich działań</p>
+        </div>
+        <div class="dashboard-main-right">Miejsce na zdjęcie</div>
+    </div>
+
+    <div class="summary">
+        <div>Wszystkie aplikacje</div>
+        <div>W trakcie</div>
+        <div>Rozmowy</div>
+        <div>Oferty zapisane</div>
+    </div>
+    <div class="next-meetings">
+        Tutaj na bieżąco powinny wyświetlać się spotkania zapisane w kalendarzu np. 3 najbliższe
+        <a>Zobacz kalendarz</a>
+    </div>
+    <div class="latest-application">
+        Tutaj ostatnie aplikacje, wraz ze statusem
+        <a>Zobacz wszystkie aplikacje</a>
+    </div>
+    <div class="statistic-application">
+        Statystyki aplikacji
+        wykres
+    </div>
+    <div class="latest-note">
+        Ostatnie notatki np. Przygotować się do rozmowy w TechCorp - powtórzyć React i algorytmy
+        <a>Zobacz wszystkie notatki</a>
+    </div>
+</div>
+
+{% endblock %}
