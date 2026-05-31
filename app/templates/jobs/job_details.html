@@ -1,1 +1,99 @@
 {% extends 'layouts/guest_base.html' %}
+
+{% block title %}
+{{ offer.title }}
+{% endblock %}
+
+{% block guest_content %}
+
+<div class="job-details-wrapper">
+
+    <div class="job-details-card">
+
+        <div class="job-details-top">
+
+            <div>
+
+                <h1>{{ offer.title }}</h1>
+
+                <h2>{{ offer.company }}</h2>
+
+            </div>
+
+            <div class="job-badge">
+
+                {{ offer.level.value }}
+
+            </div>
+
+        </div>
+
+        <div class="job-details-meta">
+
+            <div>
+                📍 {{ offer.location }}
+            </div>
+
+            <div>
+                💼 {{ offer.job_type.value }}
+            </div>
+
+            <div>
+                📄 {{ offer.type_of_contract.value }}
+            </div>
+
+            <div>
+                💰 {{ offer.salary_min }}
+                -
+                {{ offer.salary_max }} PLN
+            </div>
+
+        </div>
+
+        <div class="job-section">
+
+            <h3>Opis stanowiska</h3>
+
+            <p>
+                {{ offer.description }}
+            </p>
+
+        </div>
+
+        <div class="job-section">
+
+            <h3>Zakres obowiązków</h3>
+
+            <p>
+                {{ offer.responsibilities }}
+            </p>
+
+        </div>
+
+        <div class="job-buttons">
+
+            {% if current_user.is_authenticated %}
+
+            <button class="btn">
+
+                Aplikuj
+
+            </button>
+
+            {% else %}
+
+            <a href="{{ url_for('auth.login') }}" class="btn">
+
+                Zaloguj się aby aplikować
+
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}
