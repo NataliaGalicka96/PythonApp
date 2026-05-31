@@ -1,8 +1,29 @@
-{% extends 'layouts/auth_base.html' %}
+{% extends 'layouts/guest_base.html' %}
 {% block title %}Rejestracja{% endblock %}
-{% block auth_content %}
+{% block guest_content %}
+
+
+<section class="hero-section">
+    <div class="hero-content">
+        <h1>
+            Wszystkie aplikacje
+            w jednym miejscu
+        </h1>
+        <p>
+            Organizuj aplikacje,
+            monitoruj status rekrutacji
+            i zdobywaj pracę szybciej.
+        </p>
+        <div class="feature-list">
+
+            <div>✓ Śledzenie aplikacji</div>
+            <div>✓ Statusy rekrutacji</div>
+            <div>✓ Historia kontaktu</div>
+        </div>
+    </div>
+</section>
+<!--
 <div class="auth-layout">
-    <!-- LEFT SIDE -->
     <div class="auth-side">
         <div class="brand-box">
             <h1>Wszystkie aplikacje w jednym miejscu</h1>
@@ -17,45 +38,47 @@
             </div>
         </div>
     </div>
-    <!-- RIGHT SIDE -->
-    <div class="auth-panel">
-        <div class="auth-container">
-            <div class="mobile-logo">
-                <img src="{{ url_for('static', filename='images/jobtracker-icon.png') }}">
-                <span>JobTracker</span>
+
+-->
+<!-- RIGHT SIDE -->
+<div class="auth-panel">
+    <div class="auth-container">
+        <div class="mobile-logo">
+            <img src="{{ url_for('static', filename='images/jobtracker-icon.png') }}">
+            <span>JobTracker</span>
+        </div>
+        <h2>Utwórz konto</h2>
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-name">
+                <div class="form-group">
+                    {{ form.first_name.label }}
+                    {{ form.first_name(class="form-control") }}
+                </div>
+                <div class="form-group">
+                    {{ form.last_name.label }}
+                    {{ form.last_name(class="form-control") }}
+                </div>
             </div>
-            <h2>Utwórz konto</h2>
-            <form method="POST">
-                {{ form.hidden_tag() }}
-                <div class="form-name">
-                    <div class="form-group">
-                        {{ form.first_name.label }}
-                        {{ form.first_name(class="form-control") }}
-                    </div>
-                    <div class="form-group">
-                        {{ form.last_name.label }}
-                        {{ form.last_name(class="form-control") }}
-                    </div>
-                </div>
-                <div class="form-group">
-                    {{ form.email.label }}
-                    {{ form.email(class="form-control") }}
-                </div>
-                <div class="form-group">
-                    {{ form.password.label }}
-                    {{ form.password(class="form-control") }}
-                </div>
-                <div class="form-group">
-                    {{ form.confirm_password.label }}
-                    {{ form.confirm_password(class="form-control") }}
-                </div>
-                {{ form.submit(class="btn") }}
-            </form>
-            <div class="bottom-text">
-                Masz już konto?
-                <a href="{{url_for('auth.login')}}">Zaloguj się</a>
+            <div class="form-group">
+                {{ form.email.label }}
+                {{ form.email(class="form-control") }}
             </div>
+            <div class="form-group">
+                {{ form.password.label }}
+                {{ form.password(class="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ form.confirm_password.label }}
+                {{ form.confirm_password(class="form-control") }}
+            </div>
+            {{ form.submit(class="btn") }}
+        </form>
+        <div class="bottom-text">
+            Masz już konto?
+            <a href="{{url_for('auth.login')}}">Zaloguj się</a>
         </div>
     </div>
+</div>
 </div>
 {% endblock %}

@@ -60,13 +60,16 @@ def jobs():
             JobOffer.location.ilike(location)
         )
 
+
+    page = request.args.get("page", 1, type=int)
+
     offers = (
-        jobs_query
-        .order_by(JobOffer.created.desc())
-        .all()
+    jobs_query
+    .order_by(JobOffer.created.desc())
+    .paginate(page=page, per_page=10)
     )
 
-    return render_template("jobs/offers.html", offers=offers, form=form
+    return render_template("jobs/home.html", offers=offers, form=form
     )
 
 

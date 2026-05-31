@@ -1,16 +1,32 @@
 {% extends 'layouts/base.html' %}
 {% block body %}
-<div class="app-layout">
-    {% include 'partials/sidebar.html' %}
 
-    <main class="dashboard-main">
+<div class="dashboard-layout">
 
+    <aside class="sidebar">
+        <div class="sidebar-top">
+            <h2>JobTracker</h2>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="#">Dashboard</a>
+            <a href="#">Aplikacje</a>
+            <a href="#">Kalendarz</a>
+            <a href="#">Notatki</a>
+            <a href="#">Statystyki</a>
+            <a href="#">Ustawienia</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="{{ url_for('auth.logout') }}">Wyloguj</a>
+        </div>
+    </aside>
+
+    <main class="dashboard-content">
         {% block dashboard_content %}
         {% endblock %}
-
     </main>
 
 </div>
-
 
 {% endblock %}

@@ -27,6 +27,7 @@ JobTracker
 </section>
 
 
+
 <section class="home-jobs-section">
     <div class="jobs-header">
         <div>
@@ -36,6 +37,25 @@ JobTracker
             </p>
         </div>
     </div>
+
+    <div class="search-wrapper">
+        <!-- 🔍 WYSZUKIWARKA TUTAJ -->
+        <form class="job-search" method="GET" action="{{ url_for('jobs.jobs') }}">
+
+            <input type="text" name="query" placeholder="Stanowisko lub firma..."
+                value="{{ request.args.get('query', '') }}" />
+
+            <input type="text" name="location" placeholder="Lokalizacja..."
+                value="{{ request.args.get('location', '') }}" />
+
+            <button type="submit">
+                Szukaj
+            </button>
+
+        </form>
+
+    </div>
+
     <div class="offers-grid">
 
         {% for offer in offers %}

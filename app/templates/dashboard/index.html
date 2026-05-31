@@ -1,15 +1,20 @@
 {% extends 'layouts/dashboard_base.html' %}
+
 {% block title %}Dashboard{% endblock %}
 
 {% block dashboard_content %}
 
 <div class="dashboard">
+
     <div class="dashboard-main">
         <div class="dashboard-main-left">
-            <h1>Witaj, {{ current_user.first_name }} !</h1>
+            <h1>Witaj, {{ current_user.first_name }} 👋</h1>
             <p>Oto podsumowanie Twoich działań</p>
         </div>
-        <div class="dashboard-main-right">Miejsce na zdjęcie</div>
+
+        <div class="dashboard-main-right">
+            Miejsce na zdjęcie
+        </div>
     </div>
 
     <div class="summary">
@@ -18,22 +23,34 @@
         <div>Rozmowy</div>
         <div>Oferty zapisane</div>
     </div>
-    <div class="next-meetings">
-        Tutaj na bieżąco powinny wyświetlać się spotkania zapisane w kalendarzu np. 3 najbliższe
-        <a>Zobacz kalendarz</a>
+
+    <div class="dashboard-grid">
+
+        <div class="card">
+            <h3>Najbliższe spotkania</h3>
+            <p>Tutaj spotkania z kalendarza</p>
+            <a href="#">Zobacz kalendarz</a>
+        </div>
+
+        <div class="card">
+            <h3>Ostatnie aplikacje</h3>
+            <p>Status ostatnich aplikacji</p>
+            <a href="#">Zobacz wszystkie</a>
+        </div>
+
+        <div class="card">
+            <h3>Statystyki</h3>
+            <p>Wykres aplikacji</p>
+        </div>
+
+        <div class="card">
+            <h3>Ostatnie notatki</h3>
+            <p>Przygotować się do React...</p>
+            <a href="#">Zobacz notatki</a>
+        </div>
+
     </div>
-    <div class="latest-application">
-        Tutaj ostatnie aplikacje, wraz ze statusem
-        <a>Zobacz wszystkie aplikacje</a>
-    </div>
-    <div class="statistic-application">
-        Statystyki aplikacji
-        wykres
-    </div>
-    <div class="latest-note">
-        Ostatnie notatki np. Przygotować się do rozmowy w TechCorp - powtórzyć React i algorytmy
-        <a>Zobacz wszystkie notatki</a>
-    </div>
+
 </div>
 
 {% endblock %}
