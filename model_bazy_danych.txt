@@ -129,3 +129,11 @@ JobOffer (1)
 
 Application (1)
  └── (N) Interviews
+
+
+
+Zapisane oferty
+id
+user_id
+job_offer_id
+created_at
