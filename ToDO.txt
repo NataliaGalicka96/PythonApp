@@ -1,0 +1,19 @@
+-> obsługa przycisku Zapisz
+-> obsługa przycisku Aplikuj
+-> Dodanie miejsca na zdjęcie/avatar
+-> Zakładka Aplikacje -> lista wszystkich aplikacji
+-> Odpowiednie wyświetlenie aplikacji -> te które w trakcie
+
+-> Dodanie ofert zapisanych do listy -> lista ofert zapisanych do ulubionych
+
+-> Dodanie nowej tabeli - Spotkania/rozmowy
+-> Wyświetlenie tych rozmów umówionych w zakładce dashboard
+
+-> Wyświetlenie spotkań najbliższych w dasboard
+-> Wyświetlenie aplikacji ostatnich
+-> Jakiś wykres/statystyki aplikacji
+-> Dodanie notatek do spotkań
+
+Zakładka kalendarz -> kalendarz z możliwością dodawania spotkań -> Sprawdzić w kursie
+coś podobnego było
+
