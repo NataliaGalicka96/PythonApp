@@ -6,13 +6,21 @@ from wtforms.validators import Optional
 class JobSearchForm(FlaskForm):
 
     query = StringField(
-        "Stanowisko",
-        validators=[Optional()]
+        "Stanowisko lub technologia",
+        validators=[Optional()],
+        render_kw={
+            "placeholder":
+            "Python, Backend, Flask, Google..."
+        }
     )
 
     location = StringField(
         "Lokalizacja",
-        validators=[Optional()]
+        validators=[Optional()],
+        render_kw={
+            "placeholder":
+            "Warszawa, Remote..."
+        }
     )
 
     submit = SubmitField("Szukaj")
