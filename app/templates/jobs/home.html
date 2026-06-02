@@ -5,7 +5,7 @@ JobTracker
 {% endblock %}
 
 {% block guest_content %}
-
+{% if not current_user.is_authenticated %}
 <section class="hero-section">
     <div class="hero-content">
         <h1>
@@ -25,6 +25,7 @@ JobTracker
         </div>
     </div>
 </section>
+{% endif %}
 
 
 

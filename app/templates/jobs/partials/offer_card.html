@@ -44,8 +44,12 @@
 
         {% if current_user.is_authenticated %}
 
-        <button class="btn-save" data-job-id="{{offer.id}}">
+        <button class="btn-save {% if offer.id in saved_offer_ids %} saved {% endif %}" data-job-id="{{offer.id}}">
+            {% if offer.id in saved_offer_ids %}
+            Zapisano
+            {% else %}
             Zapisz
+            {% endif %}
         </button>
 
         <button class="btn-apply">

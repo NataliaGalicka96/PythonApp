@@ -34,7 +34,20 @@ def home():
         .all()
     )
 
-    return render_template("jobs/home.html", offers=latest_offers)
+    # SAVED OFFERS
+
+    saved_offer_ids = set()
+
+    if current_user.is_authenticated:
+
+        saved_offer_ids = {
+
+            saved.job_offer_id
+            for saved in current_user.saved_jobs
+
+        }
+
+    return render_template("jobs/home.html", offers=latest_offers, saved_offer_ids = saved_offer_ids)
 
 
 # LISTA OFERT - wyszukiwanie ofert po np. lokalizacji, tytule, firmie
@@ -95,7 +108,21 @@ def jobs():
     .paginate(page=page, per_page=10)
     )
 
-    return render_template("jobs/home.html", offers=offers, form=form
+
+    # SAVED OFFERS
+
+    saved_offer_ids = set()
+
+    if current_user.is_authenticated:
+
+        saved_offer_ids = {
+
+            saved.job_offer_id
+            for saved in current_user.saved_jobs
+
+        }
+
+    return render_template("jobs/home.html", offers=offers, form=form, saved_offer_ids = saved_offer_ids
     )
 
 
