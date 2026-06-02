@@ -41,3 +41,9 @@ class User(UserMixin, db.Model):
         db.DateTime,
         default=datetime.now(UTC)
     )
+
+    saved_jobs = db.relationship(
+    "SavedJobOffer",
+    backref="user",
+    lazy=True
+    )
