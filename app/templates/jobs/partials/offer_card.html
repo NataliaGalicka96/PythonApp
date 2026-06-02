@@ -44,11 +44,11 @@
 
         {% if current_user.is_authenticated %}
 
-        <button class="btn-save">
+        <button class="btn-save" data-job-id="{{offer.id}}">
             Zapisz
         </button>
 
-        <button class="btn-save">
+        <button class="btn-apply">
             Aplikuj
         </button>
 
@@ -56,7 +56,7 @@
 
         <a href="{{ url_for('auth.login') }}" class="btn-save">
 
-            Aplikuj
+            Zaloguj się
 
         </a>
 

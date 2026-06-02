@@ -425,7 +425,8 @@ label {
 }
 
 .btn-save,
-.btn-small {
+.btn-small,
+.btn-apply {
     border: none;
     background: #f1f5f9;
     padding: 10px 14px;
@@ -436,11 +437,15 @@ label {
 }
 
 .btn-save:hover,
-.btn-small:hover {
+.btn-small:hover,
+.btn-apply:hover {
     color: #2563eb;
-    transform: translateX(4px);
-    /*box-shadow:
-        0 10px 25px rgba(37, 99, 235, 0.25);*/
+    transform: translateX(2px);
+}
+
+.btn-save.saved {
+    background: #4f46e5;
+    color: white;
 }
 
 

@@ -8,7 +8,8 @@ from flask import (
 from flask_login import login_required, current_user
 
 from app.extensions import db
-from app.models.job_offer import JobOffer, SavedJobOffer
+from app.models.job_offer import JobOffer
+from app.models.saved_job import SavedJobOffer
 from app.jobs.forms import JobSearchForm
 from app.__init__ import create_app
 import logging
