@@ -34,3 +34,13 @@ class SavedJobOffer(db.Model):
         db.DateTime,
         default = datetime.now(UTC)
     )
+
+    # RELATIONSHIP
+    # Dodajemy relację z tabelą JobOffer -> Każda oferta może być dodana do ulubionych przez kilku użytkowników
+    # Możemy wtedy użyć w templates {% for saved in latest_saved_jobs %} -> saved.job_offer.title zamiast JOIN
+    job_offer = db.relationship(
+        "JobOffer",
+        backref="saved_by_users"
+    )
+
+

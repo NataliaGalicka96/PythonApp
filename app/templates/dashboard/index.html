@@ -21,35 +21,56 @@
         <div>Wszystkie aplikacje</div>
         <div>W trakcie</div>
         <div>Rozmowy</div>
-        <div>Oferty zapisane</div>
+        <div>
+            <h3>Oferty zapisane</h3>
+            {% for saved_offer in latest_saved_jobs %}
+            <li>
+
+                <a href="{{ url_for(
+            'jobs.job_details',
+            job_id=saved_offer.job_offer.id
+        ) }}">
+
+                    {{ saved_offer.job_offer.title }}
+
+                </a>
+
+                <p>
+                    {{ saved_offer.job_offer.company }}
+                </p>
+
+            </li>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<div class="dashboard-grid">
+
+    <div class="card">
+        <h3>Najbliższe spotkania</h3>
+        <p>Tutaj spotkania z kalendarza</p>
+        <a href="#">Zobacz kalendarz</a>
     </div>
 
-    <div class="dashboard-grid">
-
-        <div class="card">
-            <h3>Najbliższe spotkania</h3>
-            <p>Tutaj spotkania z kalendarza</p>
-            <a href="#">Zobacz kalendarz</a>
-        </div>
-
-        <div class="card">
-            <h3>Ostatnie aplikacje</h3>
-            <p>Status ostatnich aplikacji</p>
-            <a href="#">Zobacz wszystkie</a>
-        </div>
-
-        <div class="card">
-            <h3>Statystyki</h3>
-            <p>Wykres aplikacji</p>
-        </div>
-
-        <div class="card">
-            <h3>Ostatnie notatki</h3>
-            <p>Przygotować się do React...</p>
-            <a href="#">Zobacz notatki</a>
-        </div>
-
+    <div class="card">
+        <h3>Ostatnie aplikacje</h3>
+        <p>Status ostatnich aplikacji</p>
+        <a href="#">Zobacz wszystkie</a>
     </div>
+
+    <div class="card">
+        <h3>Statystyki</h3>
+        <p>Wykres aplikacji</p>
+    </div>
+
+    <div class="card">
+        <h3>Ostatnie notatki</h3>
+        <p>Przygotować się do React...</p>
+        <a href="#">Zobacz notatki</a>
+    </div>
+
+</div>
 
 </div>
 
