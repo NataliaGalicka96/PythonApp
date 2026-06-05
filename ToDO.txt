@@ -1,5 +1,36 @@
--> obsługa przycisku Zapisz
+-> obsługa przycisku Zapisz - ZROBIONE
 -> obsługa przycisku Aplikuj
+
+jeśli użytkownik już aplikował, to powinien mieć możliwość anulowania
+jeśli nie aplikować, to powinien dodać się wpis do tabeli application
+dodać enum statusów -> 
+
+Po kliknięciu:
+
+[ Aplikuj ]
+
+pojawi się modal:
+
+────────────────────
+  Aplikuj na ofertę
+────────────────────
+
+Status aplikacji
+[ select ]
+
+Data aplikacji
+[ date ]
+
+Link do ogłoszenia
+[ input ]
+
+Notatki
+[ textarea ]
+
+[ Zapisz ]
+────────────────────
+
+
 -> Dodanie miejsca na zdjęcie/avatar
 -> Zakładka Aplikacje -> lista wszystkich aplikacji
 -> Odpowiednie wyświetlenie aplikacji -> te które w trakcie
