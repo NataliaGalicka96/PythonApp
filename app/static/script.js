@@ -55,6 +55,94 @@ document.addEventListener("DOMContentLoaded", () => {
         })
 
     });
+
+    //OSBŁUGA OKNA MODALNEGO - APLIKOWANIE
+    const modal =
+        document.getElementById(
+            "applyModal"
+        )
+
+    const closeModal =
+        document.getElementById(
+            "closeModal"
+        )
+
+    const applyButtons =
+        document.querySelectorAll(
+            ".btn-apply"
+        )
+
+    const modalJobTitle =
+        document.getElementById(
+            "modalJobTitle"
+        )
+
+    const modalJobId =
+        document.getElementById(
+            "modalJobId"
+        )
+
+    // OPEN MODAL
+
+    applyButtons.forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const jobId =
+                    button.dataset.jobId
+
+                const jobTitle =
+                    button.dataset.jobTitle
+
+                modal.classList.add(
+                    "active"
+                )
+
+                modalJobTitle.innerText =
+                    `Aplikuj — ${jobTitle}`
+
+                modalJobId.value =
+                    jobId
+
+            }
+        )
+
+    })
+
+    // CLOSE BUTTON
+
+    closeModal.addEventListener(
+        "click",
+        () => {
+
+            modal.classList.remove(
+                "active"
+            )
+
+        }
+    )
+
+    // CLOSE ON BACKDROP
+
+    modal.addEventListener(
+        "click",
+        (e) => {
+
+            if (
+                e.target === modal
+            ) {
+
+                modal.classList.remove(
+                    "active"
+                )
+
+            }
+
+        }
+    )
+
 })
 /*
 console.log("SCRIPT LOADED")

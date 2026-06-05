@@ -3,6 +3,8 @@ from app.extensions import db
 
 class Application(db.Model):
 
+    __tablename__ = "application"
+
     id = db.Column(db.Integer, primary_key=True)
 
     status = db.Column(
@@ -32,3 +34,9 @@ class Application(db.Model):
             ),
         nullable=False
     )
+
+    cv_filename = db.Column(
+        db.String(255)
+    )
+
+    
