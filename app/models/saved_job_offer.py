@@ -41,13 +41,13 @@ class SavedJobOffer(db.Model):
     # User -> jeden User może mieć wiele polubionych ofert
     user = db.relationship(
         "User",
-        back_popualates = "saved_jobs"
+        back_populates = "saved_jobs"
     )
 
     # JobOffer -> jedna oferta może być zapisana przez wielu użytkowników
     job_offer = db.relationship(
         "JobOffer",
-        back_popualates="saved_by_users"
+        back_populates="saved_by_users"
     )
 
     # Użytkownik może dodać tę samą ofertę raz do ulubionych, czyli unikamy duplikowania wpisów
