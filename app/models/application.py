@@ -1,5 +1,6 @@
 from datetime import datetime, UTC
 from app.extensions import db
+from models.enums import ApplicationStatus
 
 class Application(db.Model):
 
@@ -8,8 +9,9 @@ class Application(db.Model):
     id = db.Column(db.Integer, primary_key=True)
 
     status = db.Column(
-        db.String(50),
-        default="applied"
+        db.Enum(ApplicationStatus),
+        nullable=False,
+        default=ApplicationStatus.APPLIED
     )
 
     cv_filename = db.Column(
