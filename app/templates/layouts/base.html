@@ -20,8 +20,6 @@
 
         <div class="modal">
 
-            <!-- HEADER -->
-
             <div class="modal-header">
 
                 <h2 id="modalJobTitle">
@@ -34,49 +32,22 @@
 
             </div>
 
-            <!-- FORM -->
+            <form method="POST" action="{{ url_for('jobs.apply_job') }}" enctype="multipart/form-data">
 
-            <form method="POST" id="applyForm">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
                 <input type="hidden" name="job_id" id="modalJobId">
 
-                <div class="form-group">
-
-                    <label>Status</label>
-
-                    <select name="status" class="form-control">
-
-                        <option value="saved">
-                            Zapisane
-                        </option>
-
-                        <option value="applied">
-                            Zaaplikowano
-                        </option>
-
-                        <option value="interview">
-                            Rozmowa
-                        </option>
-
-                    </select>
-
-                </div>
+                <!-- CV -->
 
                 <div class="form-group">
 
-                    <label>Link do aplikacji</label>
+                    <label>CV (PDF)</label>
 
-                    <input type="text" name="application_url" class="form-control">
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>Notatki</label>
-
-                    <textarea name="notes" class="form-control" rows="5"></textarea>
+                    <input type="file" name="cv" accept=".pdf" class="form-control">
 
                 </div>
+
 
                 <button class="btn">
                     Zapisz aplikację

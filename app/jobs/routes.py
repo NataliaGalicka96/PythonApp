@@ -2,7 +2,10 @@ from flask import (
     Blueprint,
     render_template,
     request,
-    jsonify
+    jsonify,
+    flash,
+    redirect,
+    url_for
 )
 
 from flask_login import login_required, current_user
@@ -10,9 +13,14 @@ from flask_login import login_required, current_user
 from app.extensions import db
 from app.models.job_offer import JobOffer
 from app.models.saved_job_offer import SavedJobOffer
+from app.models.application import Application
 from app.jobs.forms import JobSearchForm
 from app.__init__ import create_app
 import logging
+
+from werkzeug.utils import secure_filename
+import os
+
 
 
 
@@ -181,4 +189,87 @@ def save_job(id):
     
     
 
-   
+# APLIKOWANIE
+@jobs_bp.route("/jobs/apply", methods = ["POST"])
+@login_required # Tylko zalogowany użytkownik
+def apply_job():
+
+    #Pobieram id oferty
+    job_id = request.form.get("job_id")
+
+    job = JobOffer.query.get_or_404(job_id)
+
+    # Sprawdzam, czy dany użytkownik już aplikował na tą ofertę
+    existingApplication = Application.query.filter_by(
+        user_id = current_user.id,
+        job_offer_id = job.id
+    ).first()
+
+
+    try:
+
+        # FILE
+
+        cv_file = request.files.get("cv")
+        filename = None
+
+        if cv_file:
+            
+            if not cv_file.filename.endswith(".pdf"):
+
+                flash(
+                    "Dozwolone są tylko pliki PDF",
+                    "danger"
+                )
+
+                return redirect(request.referrer)
+
+            filename = secure_filename(
+                cv_file.filename
+            )
+
+
+            upload_dir = "app/static/uploads/cv"
+
+            os.makedirs(
+                upload_dir,
+                exist_ok=True
+            )
+
+            upload_path = os.path.join(
+                "app/static/uploads/cv",
+                filename
+            )
+
+            cv_file.save(upload_path)
+
+        # CREATE APPLICATION
+
+        application = Application(
+            user_id=current_user.id,
+            job_offer_id=job.id,
+            cv_filename=filename
+        )
+
+        db.session.add(application)
+        db.session.commit()
+        flash("Aplikacja została zapisana","success")
+
+        return redirect(
+            url_for(
+                "jobs.home"
+            )
+        )
+    
+    except Exception as e:
+        db.session.rollback()
+        flash("Wystąpił problem podczas aplikowania na tą ofertę pracy", "error")
+        create_app.logger.error(f"Wystąpił błąd podczas")
+        return jsonify({
+                "error", "Wystąpił błąd podczas aplikowania na tą ofertę pracy"
+            }), 500
+
+
+
+        
+        

@@ -144,33 +144,3 @@ document.addEventListener("DOMContentLoaded", () => {
     )
 
 })
-/*
-console.log("SCRIPT LOADED")
-document.addEventListener(
-    "DOMContentLoaded",
-    () => {
-
-        const saveButtons =
-            document.querySelectorAll(
-                ".btn-save"
-            )
-
-        saveButtons.forEach(button => {
-
-            button.addEventListener(
-                "click",
-                async () => {
-
-                    const jobId =
-                        button.dataset.jobId
-
-                    console.log(jobId)
-
-                }
-            )
-
-        })
-
-    }
-)
-    */
