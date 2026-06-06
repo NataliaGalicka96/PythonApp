@@ -55,4 +55,13 @@ class Application(db.Model):
         back_populates="applications"
     )
 
+    # Użytkownik może raz aplikować na daną ofertę pracy
+    __table_args__ = (
+    db.UniqueConstraint(
+        "user_id",
+        "job_offer_id",
+        name="uq_application"
+    ),
+)
+
 

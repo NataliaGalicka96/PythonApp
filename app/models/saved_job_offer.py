@@ -50,4 +50,11 @@ class SavedJobOffer(db.Model):
         back_popualates="saved_by_users"
     )
 
-
+    # Użytkownik może dodać tę samą ofertę raz do ulubionych, czyli unikamy duplikowania wpisów
+    __table_args__ = (
+    db.UniqueConstraint(
+        "user_id",
+        "job_offer_id",
+        name="uq_saved_job"
+    ),
+)
