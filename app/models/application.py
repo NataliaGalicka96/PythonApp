@@ -9,13 +9,19 @@ class Application(db.Model):
 
     status = db.Column(
         db.String(50),
-        default="pending"
+        default="applied"
+    )
+
+    cv_filename = db.Column(
+        db.String(255)
     )
 
     created = db.Column(
         db.DateTime,
         default=datetime.now(UTC)
     )
+
+    # ===== FOREIGN KEYS =====
 
     user_id = db.Column(
         db.Integer,
@@ -35,8 +41,18 @@ class Application(db.Model):
         nullable=False
     )
 
-    cv_filename = db.Column(
-        db.String(255)
+    # ===== RELATIONSHIPS =====
+    # RELATIONSHIP
+    # Aplikacja na konkretną ofertę pracy
+    ob_offer = db.relationship(
+        "JobOffer",
+        back_populates="applications"
     )
 
-    
+    # Aplikacja przez konkretnego Usera
+    user = db.relationship(
+        "User",
+        back_populates="applications"
+    )
+
+

@@ -76,16 +76,28 @@ class JobOffer(db.Model):
         )
     )
 
-    recruiter_id = db.Column(
-        db.Integer,
-        db.ForeignKey(
-            "user.id",
-            name="fk_job_offer_recruiter"),
-        nullable=True
-    )
+    # recruiter_id = db.Column(
+    #     db.Integer,
+    #     db.ForeignKey(
+    #         "user.id",
+    #         name="fk_job_offer_recruiter"),
+    #     nullable=True
+    # )
+
+
+    # ===== RELATIONSHIPS =====
+
 
     applications = db.relationship(
         "Application",
-        backref="job_offer",
+        back_populates="job_offer",
+        cascade="all, delete-orphan",
+        lazy=True
+    )
+
+    saved_by_users = db.relationship(
+        "SavedJobOffer",
+        back_populates="job_offer",
+        cascade="all, delete-orphan",
         lazy=True
     )

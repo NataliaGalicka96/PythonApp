@@ -8,6 +8,8 @@ from app.models.enums import UserRole
 
 class User(UserMixin, db.Model):
 
+    __tablename__ = "user"
+
     id = db.Column(db.Integer, primary_key=True)
 
     first_name = db.Column(
@@ -42,8 +44,20 @@ class User(UserMixin, db.Model):
         default=datetime.now(UTC)
     )
 
+    # ===== SAVED JOBS =====
+
     saved_jobs = db.relationship(
     "SavedJobOffer",
-    backref="user",
+    back_populates="user",
+    cascade="all, delete-orphan",
     lazy=True
     )
+
+    # ===== APPLICATIONS =====
+    
+    apply_jobs = db.relationship(
+    "ApplyJobOffer",
+    backref = "user",
+    lazy = True
+    )
+

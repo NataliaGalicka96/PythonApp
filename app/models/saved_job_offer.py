@@ -17,7 +17,7 @@ class SavedJobOffer(db.Model):
         db.Integer,
         db.ForeignKey(
             "user.id",
-            name = "fk_job_offer_user_liked"
+            name = "fk_saved_job_user"
         ),
         nullable = False
     )
@@ -26,8 +26,9 @@ class SavedJobOffer(db.Model):
         db.Integer,
         db.ForeignKey(
             "job_offer.id",
-            name = "fk_job_offer_liked"
-        )
+            name = "fk_saved_job_offer"
+        ),
+        nullable = False
     )
 
     created_at = db.Column(
@@ -36,11 +37,17 @@ class SavedJobOffer(db.Model):
     )
 
     # RELATIONSHIP
-    # Dodajemy relację z tabelą JobOffer -> Każda oferta może być dodana do ulubionych przez kilku użytkowników
-    # Możemy wtedy użyć w templates {% for saved in latest_saved_jobs %} -> saved.job_offer.title zamiast JOIN
+    
+    # User -> jeden User może mieć wiele polubionych ofert
+    user = db.relationship(
+        "User",
+        back_popualates = "saved_jobs"
+    )
+
+    # JobOffer -> jedna oferta może być zapisana przez wielu użytkowników
     job_offer = db.relationship(
         "JobOffer",
-        backref="saved_by_users"
+        back_popualates="saved_by_users"
     )
 
 
