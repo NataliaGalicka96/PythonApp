@@ -143,4 +143,101 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     )
 
+    const cards = document.querySelectorAll(".kanban-card");
+    const columns = document.querySelectorAll(".kanban-cards");
+
+    let draggedCard = null;
+
+    function updateColumnCount(column) {
+
+        const countElement =
+            column.querySelector(".kanban-count");
+
+        const cards =
+            column.querySelectorAll(".kanban-card");
+
+        countElement.textContent = cards.length;
+
+    }
+
+    // DRAG START
+
+    cards.forEach(card => {
+
+        card.addEventListener("dragstart", () => {
+
+            draggedCard = card;
+
+            card.classList.add("dragging");
+        });
+
+        card.addEventListener("dragend", () => {
+
+            card.classList.remove("dragging");
+
+            draggedCard = null;
+        });
+
+    });
+
+    // DROP ZONES
+
+    columns.forEach(column => {
+
+        column.addEventListener("dragover", (e) => {
+
+            e.preventDefault();
+
+        });
+
+        const csrfToken = document
+            .querySelector('meta[name="csrf-token"]')
+            .getAttribute("content");
+
+        column.addEventListener("drop", async () => {
+
+            if (!draggedCard) return;
+
+            const sourceColumn =
+                draggedCard.closest(".kanban-column");
+
+            const targetColumn =
+                column.closest(".kanban-column");
+
+            if (sourceColumn === targetColumn) return;
+
+            column.appendChild(draggedCard);
+
+            updateColumnCount(sourceColumn);
+
+            updateColumnCount(targetColumn);
+
+            const applicationId =
+                draggedCard.dataset.applicationId;
+
+            const newStatus =
+                column.closest(".kanban-column")
+                    .dataset.status;
+
+            await fetch(`/applications/${applicationId}/status`, {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrfToken
+                },
+
+                body: JSON.stringify({
+                    status: newStatus
+                })
+
+            });
+
+        });
+
+    });
+
+
+
 })

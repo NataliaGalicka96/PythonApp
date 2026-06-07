@@ -52,8 +52,13 @@
             {% endif %}
         </button>
 
-        <button class="btn-apply" data-job-id="{{ offer.id }}" data-job-title="{{ offer.title }}">
+        <button class="btn-apply {% if offer.id in applied_offer_ids %} applied {% endif %}"
+            data-job-id="{{ offer.id }}" data-job-title="{{ offer.title }}">
+            {% if offer.id in applied_offer_ids %}
+            Zaaplikowano
+            {% else %}
             Aplikuj
+            {% endif %}
         </button>
 
         {% else %}
