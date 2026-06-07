@@ -43,10 +43,16 @@ def home():
     )
 
     # SAVED OFFERS
-
     saved_offer_ids = set()
 
+
+    # APPLIED OFFERS
+
+    applied_offer_ids = set()
+
     if current_user.is_authenticated:
+
+        #SAVED - current_user.saved_jobs - ze względu na relationship w User
 
         saved_offer_ids = {
 
@@ -55,7 +61,22 @@ def home():
 
         }
 
-    return render_template("jobs/home.html", offers=latest_offers, saved_offer_ids = saved_offer_ids)
+        # APPLIED - current_user.applications - ze względu na relationship w User
+
+        applied_offer_ids = {
+
+            application.job_offer_id
+            for application in current_user.applications
+
+        }
+
+
+
+
+    return render_template("jobs/home.html", 
+                           offers=latest_offers, 
+                           saved_offer_ids = saved_offer_ids, 
+                           applied_offer_ids = applied_offer_ids)
 
 
 # LISTA OFERT - wyszukiwanie ofert po np. lokalizacji, tytule, firmie

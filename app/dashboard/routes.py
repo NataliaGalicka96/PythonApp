@@ -10,6 +10,7 @@ from flask_login import (
 
 from app.models.application import Application
 from app.models.saved_job_offer import SavedJobOffer
+from app.models.enums import ApplicationStatus
 
 dashboard_bp = Blueprint(
     "dashboard",
@@ -38,7 +39,24 @@ def dashboard():
         .all()
     )
 
-    return render_template("dashboard/index.html", latest_applications=latest_applications, latest_saved_jobs = latest_saved_jobs )
+    applications = (
+        Application.query
+        .filter_by(user_id = current_user.id)
+        .all()
+    )
+    grouped_applications = {
+        
+        status: []
+        for status in ApplicationStatus
+    }
+
+    for application in applications:
+
+        grouped_applications[application.status].append(application)
+
+    return render_template("dashboard/index.html", latest_applications=latest_applications, 
+                           latest_saved_jobs = latest_saved_jobs, grouped_applications=grouped_applications 
+                           )
 
 
 # WSZYSTKIE APLIKACJE - lista wszystkich aplikacji zalogowanego użytkownika
@@ -54,6 +72,3 @@ def applications():
     )
 
     return render_template("dashboard/applications.html", applications=applications)
-
-
-

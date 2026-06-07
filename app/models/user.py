@@ -55,9 +55,10 @@ class User(UserMixin, db.Model):
 
     # ===== APPLICATIONS =====
     
-    apply_jobs = db.relationship(
-    "ApplyJobOffer",
-    backref = "user",
-    lazy = True
-    )
+    applications = db.relationship(
+    "Application",
+    back_populates="user",
+    cascade="all, delete-orphan",
+    lazy=True
+)
 
