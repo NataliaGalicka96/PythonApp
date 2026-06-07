@@ -49,7 +49,7 @@ class Application(db.Model):
     # ===== RELATIONSHIPS =====
     # RELATIONSHIP
     # Aplikacja na konkretną ofertę pracy
-    ob_offer = db.relationship(
+    job_offer = db.relationship(
         "JobOffer",
         back_populates="applications"
     )
