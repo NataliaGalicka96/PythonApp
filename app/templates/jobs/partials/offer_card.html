@@ -1,6 +1,14 @@
 <div class="offer-card">
     <div class="offer-top">
-        <h3>{{ offer.title }}</h3>
+        <h3>
+            <a href="{{ url_for(
+            'jobs.job_details',
+            job_id=offer.id
+        ) }}">
+                {{ offer.title }}
+            </a>
+
+        </h3>
         <span>
             {{ offer.company }}
         </span>
@@ -33,6 +41,8 @@
 
     <div class="offer-actions">
 
+
+        <!--
         <a href="{{ url_for(
             'jobs.job_details',
             job_id=offer.id
@@ -41,6 +51,9 @@
             Szczegóły
 
         </a>
+        -->
+
+
 
         {% if current_user.is_authenticated %}
 

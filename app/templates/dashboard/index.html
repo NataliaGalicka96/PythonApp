@@ -17,6 +17,59 @@
         </div>
     </div>
 
+
+    <div class="kanban-wrapper">
+        <div class="kanban-board">
+
+            {% for status, applications
+            in grouped_applications.items()
+            %}
+
+            <div class="kanban-column" data-status="{{ status.name}}">
+
+                <div class="kanban-header">
+
+                    <h3>
+                        {{ status.value }}
+                    </h3>
+
+                    <span class="kanban-count">
+                        {{ applications|length }}
+                    </span>
+
+                </div>
+
+                <div class="kanban-cards">
+
+                    {% for application in applications %}
+
+                    <div class="kanban-card" draggable="true" data-application-id="{{ application.id }}">
+
+                        <h4>
+                            {{ application.job_offer.title }}
+                        </h4>
+
+                        <p>
+                            {{ application.job_offer.company }}
+                        </p>
+
+                        <small>
+                            {{ application.job_offer.location }}
+                        </small>
+
+                    </div>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+    </div>
+    <!--
     <div class="summary">
         <div>Wszystkie aplikacje</div>
         <div>W trakcie</div>
@@ -43,6 +96,8 @@
             {% endfor %}
         </div>
     </div>
+
+-->
 </div>
 
 <div class="dashboard-grid">
@@ -72,54 +127,5 @@
 
 </div>
 
-<div class="kanban-board">
-
-    {% for status, applications
-    in grouped_applications.items()
-    %}
-
-    <div class="kanban-column" data-status="{{ status.name}}">
-
-        <div class="kanban-header">
-
-            <h3>
-                {{ status.value }}
-            </h3>
-
-            <span class="kanban-count">
-                {{ applications|length }}
-            </span>
-
-        </div>
-
-        <div class="kanban-cards">
-
-            {% for application in applications %}
-
-            <div class="kanban-card" draggable="true" data-application-id="{{ application.id }}">
-
-                <h4>
-                    {{ application.job_offer.title }}
-                </h4>
-
-                <p>
-                    {{ application.job_offer.company }}
-                </p>
-
-                <small>
-                    {{ application.job_offer.location }}
-                </small>
-
-            </div>
-
-            {% endfor %}
-
-        </div>
-
-    </div>
-
-    {% endfor %}
-
-</div>
 
 {% endblock %}

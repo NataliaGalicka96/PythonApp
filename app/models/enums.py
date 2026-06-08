@@ -36,6 +36,5 @@ class ApplicationStatus(Enum):
     OFFER = "offer"
     HIRED = "hired"
     REJECTED = "rejected"
-    WITHDRAWN = "withdrawn"
 
 
