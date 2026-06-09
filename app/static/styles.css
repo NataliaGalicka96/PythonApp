@@ -815,11 +815,9 @@ label {
 .kanban-wrapper {
 
     width: 100%;
-
     overflow-x: auto;
-
+    overflow-y: auto;
     padding-bottom: 1rem;
-
     scrollbar-width: thin;
 
 }
@@ -834,7 +832,7 @@ label {
 
     min-width: max-content;
 
-    padding: 1rem;
+    padding: 1rem 0;
 
 }
 

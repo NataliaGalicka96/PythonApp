@@ -13,7 +13,7 @@ class Application(db.Model):
         ApplicationStatus,
         validate_strings=True
     ),
-    default=ApplicationStatus.APPLIED,
+    default=ApplicationStatus.ZAAPLIKOWANO,
     nullable=False
     )
 
