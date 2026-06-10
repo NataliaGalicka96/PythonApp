@@ -46,7 +46,13 @@
                     <div class="kanban-card" draggable="true" data-application-id="{{ application.id }}">
 
                         <h4>
-                            {{ application.job_offer.title }}
+                            <a href="{{ url_for(
+            'jobs.job_details',
+            job_id=application.job_offer.id
+        ) }}">
+                                {{ application.job_offer.title }}
+                            </a>
+
                         </h4>
 
                         <p>

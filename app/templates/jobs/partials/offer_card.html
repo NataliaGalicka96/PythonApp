@@ -65,14 +65,22 @@
             {% endif %}
         </button>
 
+        {% if offer.id in applied_offer_ids %}
+        <button class="btn-just-apply">
+            <a class="btn-just-apply" href="{{ url_for(
+            'jobs.job_details',
+            job_id=offer.id) }}">
+                Zaaplikowano
+            </a>
+        </button>
+        {% else %}
         <button class="btn-apply {% if offer.id in applied_offer_ids %} applied {% endif %}"
             data-job-id="{{ offer.id }}" data-job-title="{{ offer.title }}">
-            {% if offer.id in applied_offer_ids %}
-            Zaaplikowano
-            {% else %}
             Aplikuj
-            {% endif %}
         </button>
+
+        {% endif %}
+
 
         {% else %}
 
