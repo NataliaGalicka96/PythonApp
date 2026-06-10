@@ -30,11 +30,11 @@ class JobType(str, Enum):
     STACJONARNA = "Stacjonarna"
 
 class ApplicationStatus(Enum):
-    ZAAPLIKOWANO = "zaaplikowano"
-    SELEKCJA = "selekcja"
-    ROZMOWA = "rozmowa"
-    OFERTA = "oferta"
-    ZATRUDNIONY = "zatrudniony"
+    ZAAPLIKOWANO = "Zaaplikowano"
+    SELEKCJA = "Selekcja"
+    ROZMOWA = "Rozmowa"
+    OFERTA = "Oferta"
+    ZATRUDNIONY = "Zatrudniony"
     ODRZUCONY = "odrzucony"
 
 
