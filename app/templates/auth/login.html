@@ -62,8 +62,14 @@
             </div>
 
             <div class="form-forgot">
-                {{ form.remember() }} Zapamiętaj mnie
-                <!--<span>Nie pamiętasz hasła?</span>-->
+                <label>
+                    {{ form.remember() }}
+                    Zapamiętaj mnie
+                </label>
+
+                <a href=#">
+                    Nie pamiętasz hasła?
+                </a>
             </div>
 
             {{ form.submit(class="btn") }}
