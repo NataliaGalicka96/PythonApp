@@ -60,12 +60,12 @@
                 {{ form.password.label }}
                 {{ form.password(class="form-control") }}
             </div>
-            <!--
-                <div class = "form-forgot">
-                    <checkbox>Zapamiętaj mnie</checkbox>
-                    <span>Nie pamiętasz hasła?</span>
-                </div>
-                -->
+
+            <div class="form-forgot">
+                {{ form.remember() }} Zapamiętaj mnie
+                <!--<span>Nie pamiętasz hasła?</span>-->
+            </div>
+
             {{ form.submit(class="btn") }}
         </form>
         <div class="bottom-text">
