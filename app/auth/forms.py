@@ -2,7 +2,8 @@ from flask_wtf import FlaskForm
 from wtforms import (
     StringField,
     PasswordField,
-    SubmitField
+    SubmitField,
+    BooleanField
 )
 
 from wtforms.validators import (
@@ -77,5 +78,7 @@ class LoginForm(FlaskForm):
         "Hasło",
         validators=[DataRequired()]
     )
+
+    remember = BooleanField("Zapamiętaj mnie")
 
     submit = SubmitField("Zaloguj się")
