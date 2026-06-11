@@ -3,9 +3,11 @@ from flask import (
     render_template,
     redirect,
     url_for,
-    flash
+    flash,
+    current_app
 )
 
+from flask_mail import Message
 from flask_login import (
     login_user,
     logout_user,
@@ -18,7 +20,7 @@ from werkzeug.security import (
     check_password_hash
 )
 
-from app.extensions import db
+from app.extensions import mail
 from app.models.user import User
 from app.auth.forms import (
     RegistrationForm,
@@ -31,6 +33,20 @@ auth_bp = Blueprint(
     __name__,
     url_prefix="/auth"
 )
+
+
+def send_reset_email(user):
+    token = user.get_reset_token() # Tworzenie tokenu resetu hasła dla użytkownika
+    msg = Message(
+        subject="Reset hasła",
+        sender=current_app.config.get("MAIL_DEFAULT_SENDER"),
+        recipients=[user.email]
+    ) #Budowanie wiadomości dla użytkownika, który chce zresetować hasło
+    msg.body = f"""Aby zresetować hasło, kliknij poniższy link:
+{url_for('auth.reset_token', token=token, _external=True)}
+
+Jeżeli nie zgłaszałeś żądania resetu hasła, zignoruj tę wiadomość."""
+    mail.send(msg)
 
 
 # REJESTRACJA
