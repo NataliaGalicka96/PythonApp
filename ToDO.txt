@@ -1,50 +1,65 @@
--> obsługa przycisku Zapisz - ZROBIONE
--> obsługa przycisku Aplikuj
+JAKO NIEZALOGOWANY:
 
-jeśli użytkownik już aplikował, to powinien mieć możliwość anulowania
-jeśli nie aplikować, to powinien dodać się wpis do tabeli application
-dodać enum statusów -> 
+-> Oferty
+Koniecznie:
+- dodanie większej ilości opcji do wyszukiwania
 
-Po kliknięciu:
+Dodatkowo:
+- dodanie filtrów po jednej stronie - po kluczu
 
-[ Aplikuj ]
+-> Zaloguj się
+- Opcja Zapamiętaj mnie
+- Nie pamiętam hasła
 
-pojawi się modal:
-
-────────────────────
-  Aplikuj na ofertę
-────────────────────
-
-Status aplikacji
-[ select ]
-
-Data aplikacji
-[ date ]
-
-Link do ogłoszenia
-[ input ]
-
-Notatki
-[ textarea ]
-
-[ Zapisz ]
-────────────────────
+- Walidacja
 
 
--> Dodanie miejsca na zdjęcie/avatar
--> Zakładka Aplikacje -> lista wszystkich aplikacji
--> Odpowiednie wyświetlenie aplikacji -> te które w trakcie
+-> Zarejestruj się
+- wysyłanie e-maila
+- captcha - cookie ciasteczka
+- Walidacja
 
--> Dodanie ofert zapisanych do listy -> lista ofert zapisanych do ulubionych
+JAKO ZALOGOWANY
 
--> Dodanie nowej tabeli - Spotkania/rozmowy
--> Wyświetlenie tych rozmów umówionych w zakładce dashboard
+-> dashboard
+1. JobTracker -> jako link - strona główna dashboard
+2. Dodać miejsce na zdjęcie
+3. Usunąć KANBAN
+4. Najbliższe Spotkania
+5. Ostatnie Aplikacje
+6. statystyki
+7. Ostatnie Notatki
 
--> Wyświetlenie spotkań najbliższych w dasboard
--> Wyświetlenie aplikacji ostatnich
--> Jakiś wykres/statystyki aplikacji
--> Dodanie notatek do spotkań
 
-Zakładka kalendarz -> kalendarz z możliwością dodawania spotkań -> Sprawdzić w kursie
-coś podobnego było
+-> Oferty 
+1. Jak klikam Oferty to przekierowuje mnie na jobs a nie na / - do zmiany
+
+
+-> Szczegóły Oferty
+1. Porobić coś z przyciskiem Aplikuj - może dodać opcję anulowania
+
+
+-> Aplikacje
+1. Tutaj dodać KANBAN
+2. Dodać możliwość anulowania aplikacji
+3. Na razie zablokować drag&drop.
+
+-> kalendarz
+Dodać kalendarz i po kliknięciu w pole z dniem, możliwość dodania spotkania. 
+Możliwość ustawienia przypomnienia o spotkaniu.
+
+
+-> Notatki
+Możliwość dodania notatki do spotkania
+
+-> statystyki
+Różne wykresy
+Tabelki
+
+-> ustawienia
+Profilowe - zmiana hasła, zmiana nazwy użytkownika, zmiana zdjęcia głównego
+Możliwość dodania CV
+
+
+PO ZROBIENIU TYCH KROKÓW - REFAKTORYZACJA, ZROBIENIE SERVICE ITD...
 

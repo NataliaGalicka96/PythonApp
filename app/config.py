@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from datetime import timedelta
 
 # pip install python-dotenv
 # Ładowanie zmiennych z pliku .env
@@ -21,3 +22,6 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     MAX_CONTENT_LENGTH = 5 * 1024 * 1024
+
+    # Dodanie konfiguracji dla opcji "Zapamiętaj mnie - przy logowaniu", żeby opcja działała np. 30 dni a nie domyślnie cały czas
+    REMEMBER_COOKIE_DURATION = timedelta(days=30)
