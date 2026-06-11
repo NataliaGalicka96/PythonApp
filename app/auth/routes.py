@@ -24,7 +24,9 @@ from app.extensions import db, mail
 from app.models.user import User
 from app.auth.forms import (
     RegistrationForm,
-    LoginForm
+    LoginForm,
+    RequestResetForm,
+    ResetPasswordForm
 )
 
 # blueprint auth
@@ -115,6 +117,51 @@ def login():
         flash("Niepoprawne dane logowania","danger")
 
     return render_template("auth/login.html", form=form)
+
+
+@auth_bp.route("/reset_password", methods=["GET", "POST"])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for("dashboard.dashboard"))
+
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash(
+            "Na Twój adres email wysłano link do resetowania hasła.",
+            "info"
+        )
+        return redirect(url_for("auth.login"))
+
+    return render_template("auth/reset_request.html", form=form)
+
+
+@auth_bp.route("/reset_password/<token>", methods=["GET", "POST"])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for("dashboard.dashboard"))
+
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash(
+            "Token jest nieprawidłowy lub wygasł. Poproś o nowy link.",
+            "warning"
+        )
+        return redirect(url_for("auth.reset_request"))
+
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        hashed_password = generate_password_hash(form.password.data)
+        user.password = hashed_password
+        db.session.commit()
+        flash(
+            "Twoje hasło zostało zaktualizowane. Możesz się teraz zalogować.",
+            "success"
+        )
+        return redirect(url_for("auth.login"))
+
+    return render_template("auth/reset_token.html", form=form)
 
 
 # WYLOGOWANIE
