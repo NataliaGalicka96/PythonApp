@@ -82,3 +82,45 @@ class LoginForm(FlaskForm):
     remember = BooleanField("Zapamiętaj mnie")
 
     submit = SubmitField("Zaloguj się")
+
+
+class RequestResetForm(FlaskForm):
+
+    email = StringField(
+        "Email",
+        validators=[
+            DataRequired(),
+            Email(),
+            Length(max=250)
+        ]
+    )
+
+    submit = SubmitField("Wyślij link resetujący")
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError(
+                "Nie znaleziono użytkownika z tym adresem email."
+            )
+
+
+class ResetPasswordForm(FlaskForm):
+
+    password = PasswordField(
+        "Nowe hasło",
+        validators=[DataRequired(), Length(min=6)]
+    )
+
+    confirm_password = PasswordField(
+        "Powtórz nowe hasło",
+        validators=[
+            DataRequired(),
+            EqualTo(
+                'password',
+                message="Hasła muszą być takie same"
+            )
+        ]
+    )
+
+    submit = SubmitField("Zresetuj hasło")

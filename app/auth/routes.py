@@ -20,7 +20,7 @@ from werkzeug.security import (
     check_password_hash
 )
 
-from app.extensions import mail
+from app.extensions import db, mail
 from app.models.user import User
 from app.auth.forms import (
     RegistrationForm,
