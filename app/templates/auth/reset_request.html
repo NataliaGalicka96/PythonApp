@@ -1,0 +1,28 @@
+{% extends 'layouts/guest_base.html' %}
+{% block title %}Resetuj hasło{% endblock %}
+{% block guest_content %}
+<div class="auth-panel">
+    <div class="auth-container">
+        <div class="mobile-logo">
+            <img src="{{ url_for('static', filename='images/jobtracker-icon.png') }}">
+            <span>JobTracker</span>
+        </div>
+        <h2>Reset hasła</h2>
+        <p>Wpisz swój adres email, aby otrzymać link do zresetowania hasła.</p>
+
+        <form method="POST">
+            {{ form.hidden_tag() }}
+            <div class="form-group">
+                {{ form.email.label }}
+                {{ form.email(class="form-control") }}
+            </div>
+            {{ form.submit(class="btn") }}
+        </form>
+
+        <div class="bottom-text">
+            Pamiętasz hasło?
+            <a href="{{ url_for('auth.login') }}">Zaloguj się</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
