@@ -89,7 +89,8 @@ def login():
 
         if user and check_password_hash(user.password,form.password.data):
 
-            login_user(user)
+            login_user(user, 
+                       remember=form.remember.data) # Przekazanie do logowania również pola remember - zapamiętaj
 
             flash("Zalogowano pomyślnie","success"
             )
